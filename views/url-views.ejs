@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>✨ Cute URL Shortener ✨</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+
+    body {
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(to bottom right, #ffe4ec, #ffe6f7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  animation: fadeIn 1s ease-in;
+  min-height: 100vh;
+}
+
+
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #d63384;
+      margin-bottom: 30px;
+      font-size: 36px;
+      animation: popIn 0.6s ease;
+    }
+
+    form {
+      background-color: #fff0f6;
+      padding: 25px 35px;
+      border-radius: 20px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      animation: slideUp 0.8s ease;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      width: 280px;
+      border: 2px solid #f8b6d2;
+      border-radius: 12px;
+      margin-right: 15px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #ff80ab;
+      border: none;
+      color: white;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #f06292;
+    }
+
+    p {
+      margin-top: 25px;
+      font-size: 16px;
+    }
+
+    p.error {
+      color: #d6336c;
+      font-weight: bold;
+    }
+
+    p.success {
+      color: #4caf50;
+      font-weight: bold;
+    }
+
+    a {
+      color: #b42785;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>💖 URL Shortener 💖</h1>
+  <form action="/shorten" method="POST">
+    <input type="text" name="longUrl" placeholder="Paste your long URL here" />
+    <button type="submit">✨ Shorten ✨</button>
+  </form>
+
+  <% if (shortUrl) { %>
+    <p class="success">Here’s your short link: <a href="<%= shortUrl %>" target="_blank"><%= shortUrl %></a></p>
+  <% } %>
+
+  <% if (error) { %>
+    <p class="error">Oops! <%= error %></p>
+  <% } %>
+</body>
+</html>
