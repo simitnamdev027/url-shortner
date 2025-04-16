@@ -49,7 +49,8 @@ if(existurl){return res.render("url-views", { shortUrl: existurl.shortUrl , erro
     const shortCode = crypto.randomBytes(3).toString("hex");
 
     //Construct short URL
-    const shortUrl = `http://localhost:3000/${shortCode}`;
+    const shortUrl = `${req.protocol}://${req.get('host')}/${shortCode}`;
+
 
     //Save to database
     const newUrl = new urlSchema({ longUrl, shortUrl, shortCode });
